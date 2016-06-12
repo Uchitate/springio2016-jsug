@@ -25,7 +25,7 @@ public class UserService {
 	}
 
 	public User searchUser(long id) {
-		return userRepository.findByid(id);
+		return userRepository.findById(id);
 	}
 
 	public User createUser(UserCreateRequest request) {
@@ -33,20 +33,23 @@ public class UserService {
 		user.setName(request.getName());
 		user.setEmail(request.getEmail());
 		user.setAge(request.getAge());
+		user.setGender(request.getGender());
 		return userRepository.saveAndFlush(user);
 	}
 
 	public User updateUser(UserUpdateRequest request, long id) {
-		User user = userRepository.findByid(id);
+		User user = userRepository.findById(id);
 		user.setName(request.getName());
 		user.setEmail(request.getEmail());
 		user.setAge(request.getAge());
+		user.setGender(request.getGender());
 
 		return userRepository.saveAndFlush(user);
 	}
 
-	public void deleteUser(Long id){
-		User user = userRepository.findByid(id);
+	public String deleteUser(Long id){
+		User user = userRepository.findById(id);
 		userRepository.delete(user);
+		return user.getName();
 	}
 }

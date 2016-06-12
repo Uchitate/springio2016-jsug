@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/users")
 public class UserSearchController {
 
 	public static final String FORM_MODEL_KEY = "form";
@@ -25,6 +25,13 @@ public class UserSearchController {
 	@ModelAttribute(FORM_MODEL_KEY)
 	public UserSearchForm setUserSearchFrom() {
 		return new UserSearchForm();
+	}
+
+	@ModelAttribute("genders")
+	public User.Gender[] setupGender() {
+		User.Gender[] genders = User.Gender.values();
+//		return Arrays.copyOfRange(genders, 0, genders.length);
+		return genders;
 	}
 
 	@GetMapping
