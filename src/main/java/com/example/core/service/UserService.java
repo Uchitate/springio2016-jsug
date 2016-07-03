@@ -29,6 +29,7 @@ public class UserService {
 	}
 
 	public User searchUser(long id) {
+		System.out.println("メソッドにきたよ");
 		return userRepository.findById(id);
 	}
 
